@@ -7,7 +7,7 @@ const Directory = () => {
     const [sectionList, setSectionList] = useState([])
 
     useEffect(() => {
-        swagService.query().then((section) => setSectionList(section))
+        swagService.querySections().then((section) => setSectionList(section))
     }, [])
     return (
         <div className="directory-menu">
