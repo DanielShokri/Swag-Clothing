@@ -1,4 +1,3 @@
-
 // Set your brand colors
 $purple: #8a4d76;
 $pink: #fa7c91;
@@ -20,19 +19,23 @@ $input-shadow: none;
 $navbar-background-color: transparent;
 $navbar-padding-horizontal: 0.9rem;
 $navbar-item-img-max-height: 2.5rem;
-$desktop: 1230px;
+// $desktop: 1300px;
 // Import only what you need from Bulma
-@import '../node_modules/bulma/sass/utilities/_all.sass';
-@import '../node_modules/bulma/sass/base/_all.sass';
-@import '../node_modules/bulma/sass/elements/button.sass';
-@import '../node_modules/bulma/sass/elements/container.sass';
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
 // @import '../node_modules/bulma/sass/elements/form.sass';
 // @import '../node_modules/bulma/sass/elements/title.sass';
-@import '../node_modules/bulma/sass/components/navbar.sass';
+@import "../node_modules/bulma/sass/components/navbar.sass";
 // @import '../node_modules/bulma/sass/layout/hero.sass';
 // @import '../node_modules/bulma/sass/layout/section.sass';
 
-body {
-  font-family: 'Poppins', sans-serif;
+html {
   background-color: #fff;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  height: 100vh;
 }
