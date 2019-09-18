@@ -19,7 +19,7 @@ $input-shadow: none;
 $navbar-background-color: transparent;
 $navbar-padding-horizontal: 0.9rem;
 $navbar-item-img-max-height: 2.5rem;
-// $desktop: 1300px;
+$desktop: 1300px;
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
@@ -38,4 +38,5 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #fff;
   height: 100vh;
+  padding: 0 20px;
 }

@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="container">
-      <AppHeader />
+      <AppHeader currUser={currUser}/>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
