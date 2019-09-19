@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import { auth } from '../../firebase/firebase.utils';
@@ -6,12 +6,22 @@ import './appheader.styles.scss';
 
 const AppHeader = ({ currUser }) => {
     const [burgerActive, setBurgerActive] = useState(false);
+    const [userName, setUserName] = useState(null);
 
     const handleBurgerClick = () => {
         if (!burgerActive) setBurgerActive(true);
         else setBurgerActive(false);
-        console.log('Setting burger')
     }
+
+    useEffect(() => {
+        if (currUser) {
+            const displayName = currUser.displayName;
+            if (!/^\s*$/.test(displayName)) return setUserName(displayName);
+
+            const newName = displayName.replace(/ .*/, '');
+            setUserName(newName);
+        }
+    }, [currUser])
 
     return (
         <div>
@@ -37,7 +47,7 @@ const AppHeader = ({ currUser }) => {
                                 <Link className="navbar-item" to="/shop">CART</Link>
                                 {
                                     currUser ?
-                                        <div style={{ marginBottom: 0 }} className="button is-light" onClick={() => auth.signOut()}>SIGN OUT</div> :
+                                        <div style={{ marginBottom: 0 }} className="button is-light" onClick={() => auth.signOut()}>SIGN OUT, {userName}</div> :
                                         <Link className="button is-light" to="/signin" style={{ marginBottom: 0 }}> SIGN IN</Link>
                                 }
                             </div>
