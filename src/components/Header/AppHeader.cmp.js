@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
 import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+
+import CartDropdown from '../CartDropdown/CartDropdown.cmp'
+import Logo from '../../assets/logo.png';
 import './appheader.styles.scss';
 
-const AppHeader = ({ currUser }) => {
+const AppHeader = ({ currentUser }) => {
     const [burgerActive, setBurgerActive] = useState(false);
     const [userName, setUserName] = useState(null);
+
 
     const handleBurgerClick = () => {
         if (!burgerActive) setBurgerActive(true);
@@ -14,14 +18,14 @@ const AppHeader = ({ currUser }) => {
     }
 
     useEffect(() => {
-        if (currUser) {
-            const displayName = currUser.displayName;
+        if (currentUser) {
+            const displayName = currentUser.displayName;
             if (!/^\s*$/.test(displayName)) return setUserName(displayName);
 
             const newName = displayName.replace(/ .*/, '');
             setUserName(newName);
         }
-    }, [currUser])
+    }, [currentUser])
 
     return (
         <div>
@@ -44,9 +48,9 @@ const AppHeader = ({ currUser }) => {
                             <div className="buttons" style={{ justifyContent: 'center' }}>
                                 <Link className="navbar-item" to="/shop">SHOP</Link>
                                 <Link className="navbar-item" to="/shop">CONTACT</Link>
-                                <Link className="navbar-item" to="/shop">CART</Link>
+                                <CartDropdown /> 
                                 {
-                                    currUser ?
+                                    currentUser ?
                                         <div style={{ marginBottom: 0 }} className="button is-light" onClick={() => auth.signOut()}>SIGN OUT, {userName}</div> :
                                         <Link className="button is-light" to="/signin" style={{ marginBottom: 0 }}> SIGN IN</Link>
                                 }
@@ -59,4 +63,9 @@ const AppHeader = ({ currUser }) => {
     )
 }
 
-export default AppHeader;
+const mapStateToProps = state => ({
+    currentUser: state.userReducer.currentUser
+})
+
+
+export default connect(mapStateToProps)(AppHeader);
