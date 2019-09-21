@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectCartItemsCount, selectCartItems } from '../../store/cart/cartSelectors';
+
 import CartItem from '../CartItem/CartItem.cmp';
+import './cartdropdown.styles.scss';
 
 
-const CartDropdown = (props) => {
+const CartDropdown = ({ cartItems, cartQuantity }) => {
     const [dropdownActive, setDropdownActive] = useState(false);
 
     const handleClick = () => {
-        console.log(props.cartItems)
         if (!dropdownActive) setDropdownActive(true);
         else setDropdownActive(false);
     }
@@ -16,29 +19,33 @@ const CartDropdown = (props) => {
             <div className="dropdown-trigger">
                 <div className="navbar-item" aria-haspopup="true" aria-controls="dropdown-menu2">
                     <span>CART</span>
-                    <span className="tag is-rounded">0</span>
+                    <span className="tag is-rounded">{cartQuantity}</span>
                 </div>
             </div>
             <div className="dropdown-menu" id="dropdown-menu2" role="menu">
                 <div className="dropdown-content">
                     <div className="dropdown-item">
-                        {props.cartItems.map(cartItem => (
+                        {cartItems.length ?
+                            cartItems.map(cartItem => (
                                 <CartItem key={cartItem.id} item={cartItem} />
-                            ))}
+                            )) :
+                            <span className="empty-msg">Your cart is empty</span>
+                        }
                     </div>
 
                     <hr className="dropdown-divider" />
-                    <a href="#" className="dropdown-item button is-dark">
+                    <Link to="/checkout" style={{ display: 'flex', margin: '0 auto', width: '80%' }} className="go-to-checkout button is-dark">
                         GO TO CHECKOUT
-      </a>
+      </Link>
                 </div>
             </div>
         </div>
     )
 }
 
-const mapStateToProps = ({ cartReducer: { cartItems } }) => ({
-    cartItems
+const mapStateToProps = state => ({
+    cartItems: selectCartItems(state),
+    cartQuantity: selectCartItemsCount(state)
 })
 
 

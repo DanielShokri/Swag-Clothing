@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage/HomePage.cmp';
 import ShopPage from './pages/ShopPage/ShopPage.cmp';
 import AppHeader from './components/Header/AppHeader.cmp';
 import SignupPage from './pages/SignupPage/SignupPage.cmp';
+import CheckoutPage from './pages/CheckOutPage/CheckOutPage.cmp';
 
 import { setCurrentUser } from './store/user/userActions';
 import './App.scss';
@@ -40,6 +41,7 @@ function App(props) {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/signin" render={() => currentUser ? (<Redirect to="/" />) : (<SignupPage />)} />
       </Switch>
     </div>
