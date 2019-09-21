@@ -19,6 +19,9 @@ img {
   margin: 0 auto;
   padding: 5% 0;
   margin-bottom: 5em;
+  .no-items-title {
+    text-align: center;
+  }
 }
 
 .projTitle {
@@ -97,7 +100,18 @@ img {
 }
 
 // CART Items
+.qty-value {
+  margin: 0 10px;
+}
+.arrow {
+  cursor: pointer;
+}
 
+.qty-and-price {
+  display: flex;
+  align-items: center;
+  width: 100px;
+}
 .cart {
   padding: 1em 0;
 
@@ -115,6 +129,9 @@ img {
       display: flex;
       justify-content: space-between;
       width: 100%;
+      .remove {
+        cursor: pointer;
+      }
     }
     .cartSection {
       display: flex;
@@ -130,7 +147,7 @@ img {
 
       h3 {
         font-size: 1em;
-        margin-right: 7rem;
+        // margin-right: 7rem;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.025em;
@@ -356,10 +373,11 @@ a.remove {
             font-size: 0.75em;
           }
         }
+
         &.prodTotal,
         &.removeWrap {
-        width: 25%;
-        margin-left: 10px;
+          width: 25%;
+          margin-left: 10px;
         }
         .itemImg {
           width: 40%;

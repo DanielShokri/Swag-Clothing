@@ -2,7 +2,9 @@
 export default {
     querySections,
     queryShopData,
-    addItemToCart
+    deleteItemFromCart,
+    addItemToCart,
+    removeItemFromCart
 }
 
 const sections = [
@@ -301,7 +303,7 @@ function addItemToCart(cartItems, cartItemToAdd) {
 
     if (exitingCartItem) {
         return cartItems.map(cartItem => {
-           return cartItem.id === cartItemToAdd.id
+            return cartItem.id === cartItemToAdd.id
                 ? { ...cartItem, quantity: cartItem.quantity + 1 } :
                 cartItem
         })
@@ -309,4 +311,21 @@ function addItemToCart(cartItems, cartItemToAdd) {
 
     return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 
+}
+
+function deleteItemFromCart(cartItems, itemToDelete) {
+    const filteredItems = cartItems.filter(item => item.id !== itemToDelete.id);
+    return filteredItems
+}
+
+function removeItemFromCart(cartItems, cartItemToRemove) {
+    const exitingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToRemove.id);
+
+    if (exitingCartItem.quantity === 1) return cartItems;
+
+    return cartItems.map(cartItem => (
+        cartItem.id === cartItemToRemove.id ?
+            { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+    ))
 }
