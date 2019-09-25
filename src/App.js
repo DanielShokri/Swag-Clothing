@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-import HomePage from './pages/HomePage/HomePage.cmp';
+import HomePage from './pages/homepage/HomePage.cmp';
 import ShopPage from './pages/ShopPage/ShopPage.cmp';
 import AppHeader from './components/Header/AppHeader.cmp';
 import SignupPage from './pages/SignupPage/SignupPage.cmp';
