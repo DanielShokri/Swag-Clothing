@@ -4,7 +4,8 @@ export default {
     queryShopData,
     deleteItemFromCart,
     addItemToCart,
-    removeItemFromCart
+    removeItemFromCart,
+    getShopCollection
 }
 
 const sections = [
@@ -296,6 +297,18 @@ function querySections() {
 
 function queryShopData() {
     return Promise.resolve(SHOP_DATA)
+}
+
+function getShopCollection(collectionName) {
+    const collectionNameToId = {
+        hats: 1,
+        sneakers: 2,
+        jackets: 3,
+        womens: 4,
+        mens: 5
+    }
+    const collectionToReturn = SHOP_DATA.find(data => data.id === collectionNameToId[collectionName])
+    return Promise.resolve(collectionToReturn)
 }
 
 function addItemToCart(cartItems, cartItemToAdd) {

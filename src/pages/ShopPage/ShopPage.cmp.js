@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import swagService from '../../services/swagService';
-import CollectionPreview from '../../components/CollectionPreview/CollectionPreview.cmp'
+import React from 'react';
+import { Route } from 'react-router-dom';
 
+import CollectionOverview from '../../components/CollectionOverview/CollectionOverview.cmp';
+import CollectionPage from '../CollectionPage/CollectionPage'
 
-const ShopPage = () => {
-    const [shopItemList, setShopItemList] = useState([]);
+const ShopPage = ({ match }) => {
 
-    useEffect(() => {
-        swagService.queryShopData().then(data => setShopItemList(data))
-    }, [])
-
-    return(
+    return (
         <div className="shop-page">
-            {
-                shopItemList.map(({id, ...otherProps}) =>(
-                    <CollectionPreview key={id} {...otherProps}/>
-                ))
-            }
+            <Route exact path={`${match.path}`} component={CollectionOverview} />
+            <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
         </div>
     )
 }

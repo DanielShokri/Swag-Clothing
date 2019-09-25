@@ -21,6 +21,9 @@ img {
   margin-bottom: 5em;
   .no-items-title {
     text-align: center;
+    margin: 50px;
+    font-size: 1.6rem;
+
   }
 }
 
@@ -262,10 +265,11 @@ a.remove {
       outline: 0;
     }
   }
-  a.btn {
+  button.btn {
     float: left;
     width: 15%;
-    padding: 0.66em 0;
+    cursor: pointer;
+    padding: 0.72em 0;
     border-radius: 0 1em 1em 0;
     text-align: center;
     border: 1px solid #82ca9c;

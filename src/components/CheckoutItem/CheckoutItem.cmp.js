@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteItem, addItem, removeItem } from '../../store/cart/cartActions'
+import { deleteItem, addItem, removeItem } from '../../store/cart/cartActions';
+import { toast } from 'react-toastify';
 import './checkoutitem.styles.scss';
 
 const CheckoutItem = ({ cartItem, deleteItem, addItem, removeItem }) => {
     const { name, price, quantity, imageUrl } = cartItem;
+
+    const handleDeleteItem = () => {
+        deleteItem(cartItem)
+        toast.warn(`${name} was deleted from your cart!`)
+    }
+
     return (
         <div className="cart">
             <ul className="cartWrap">
@@ -16,7 +23,7 @@ const CheckoutItem = ({ cartItem, deleteItem, addItem, removeItem }) => {
                             {/* <p className="itemNumber">#QUE-007544-002</p> */}
                             <h3>{name}</h3>
                         </div>
-                        
+
                         <div className="qty-and-price">
                             <p> <span className="qty">
                                 <span className="arrow" onClick={() => removeItem(cartItem)}>&#10094;</span>
@@ -29,7 +36,7 @@ const CheckoutItem = ({ cartItem, deleteItem, addItem, removeItem }) => {
                             <p>${quantity * price}</p>
                         </div>
                         <div className="cartSection removeWrap">
-                            <div className="remove" onClick={() => deleteItem(cartItem)}>✕</div>
+                            <div className="remove" onClick={handleDeleteItem}>✕</div>
                         </div>
                     </div>
                 </li>

@@ -2,10 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { addItem } from '../../store/cart/cartActions';
+import { toast } from 'react-toastify';
 import './collectionitem.styles.scss'
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl } = item;
+
+    const handleAddItem = () => {
+        addItem(item)
+        toast(`${name} is added to your cart!`)
+    }
+
     return (
         <div className="collection-item">
             <div className="image" style={{
@@ -15,7 +22,7 @@ const CollectionItem = ({ item, addItem }) => {
                 <span className="name">{name}</span>
                 <span className="price">${price}</span>
             </div>
-            <button onClick={() => addItem(item)} className="button is-light add-to-cart">ADD TO CART</button>
+            <button onClick={handleAddItem} className="button is-light add-to-cart">ADD TO CART</button>
         </div>
     )
 }
