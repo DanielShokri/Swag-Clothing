@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react';
 import './homepage.styles.scss';
 import Directory from '../../components/Directory/Directory.cmp';
 
