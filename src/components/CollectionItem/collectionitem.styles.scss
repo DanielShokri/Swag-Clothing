@@ -15,9 +15,9 @@
   }
 
   .add-to-cart {
-    position: absolute;
     width: 80%;
     opacity: 0.7;
+    position: absolute;
     top: 255px;
     display: none;
   }
@@ -26,6 +26,7 @@
     .image {
       opacity: 0.8;
     }
+
     .add-to-cart {
       opacity: 0.85;
       display: flex;
@@ -48,11 +49,4 @@
       width: 10%;
     }
   }
-}
-
-.green-background {
-  background-color: #FFF;
-  color: #FFF;
-  min-height: 60px;
-  box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.3);
 }

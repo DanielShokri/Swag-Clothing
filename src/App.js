@@ -36,7 +36,7 @@ function App(props) {
   }, [setCurrentUser])
 
   return (
-    <div className="container">
+    <div>
       <AppHeader />
       <Switch>
         <Route exact path="/" component={HomePage} />

@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import swagService from '../../services/swagService';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect'
+import { selectDirectorySections } from '../../store/directory/directorySelectors';
 import MenuItem from '../MenuItem/MenuItem.cmp';
 import './directory.styles.scss'
 
-const Directory = () => {
-    const [sectionList, setSectionList] = useState([])
+const Directory = ({ sections }) => {
 
-    useEffect(() => {
-        swagService.querySections().then((section) => setSectionList(section))
-    }, [])
     return (
         <div className="directory-menu">
 
-            {sectionList.map(({  id, ...otherProps }) => (
+            {sections.map(({ id, ...otherProps }) => (
                 <MenuItem key={id} {...otherProps} />
             ))}
         </div>
     )
 }
 
-export default Directory;
+const mapStateToProps = createStructuredSelector({
+    sections: selectDirectorySections
+})
+
+export default connect(mapStateToProps)(Directory);
